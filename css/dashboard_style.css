@@ -134,3 +134,14 @@
   font-size: 0.8rem;
   color: gray;
 }
+
+
+.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+.dark-mode .header,
+.dark-mode .task-item,
+.dark-mode .task-stats div {
+  background-color: #1e1e1e;
+}
