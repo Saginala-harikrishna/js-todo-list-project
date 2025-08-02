@@ -60,35 +60,56 @@
   font-size: 1rem;
 }
 
-/* Stats + Filter */
+/* Stats + Filters Section (Updated) */
 .stats-filters {
   display: flex;
   justify-content: space-between;
-  margin: 2rem;
+  align-items: flex-start;
+  gap: 1.5rem;
   flex-wrap: wrap;
+  margin: 2rem;
+}
+
+/* Stats Cards Horizontal */
+.task-stats {
+  display: flex;
+  gap: 1rem;
+  
+
 }
 
 .task-stats div {
   background: white;
   border-radius: 10px;
-  padding: 1rem;
-  margin: 0.5rem;
+  padding: 1rem 1.5rem;
   text-align: center;
-  width: 100px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  min-width: 100px;
 }
 
 .task-stats span {
+  display: block;
   font-size: 1.5rem;
   color: #7c3aed;
   font-weight: bold;
+  margin-top: 0.25rem;
 }
 
+/* Filter Section Container */
 .task-filters {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
   display: flex;
   gap: 1rem;
   align-items: center;
-  margin: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.task-filters h4 {
+  margin: 0;
+  color: #333;
 }
 
 .filter-btn {
@@ -97,12 +118,14 @@
   padding: 0.5rem 1rem;
   border-radius: 6px;
   cursor: pointer;
+  font-weight: 500;
 }
 
 .filter-btn.active {
   background-color: #a855f7;
   color: white;
 }
+
 
 /* Task List */
 .task-list {
