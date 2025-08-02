@@ -1,27 +1,43 @@
+// dashboard.js
+
 const taskInput = document.getElementById('taskInput');
 const addTaskBtn = document.getElementById('addTaskBtn');
 const taskList = document.getElementById('taskList');
 const welcomeMessage = document.getElementById('welcomeMessage');
-
 const filterBtns = document.querySelectorAll('.filter-btn');
 
 let currentFilter = 'all';
+let currentUser = localStorage.getItem('username');
 
-const getTasks = () => JSON.parse(localStorage.getItem('tasks') || '[]');
+function getAllUsers() {
+  return JSON.parse(localStorage.getItem('users') || '{}');
+}
 
-const saveTasks = (tasks) => localStorage.setItem('tasks', JSON.stringify(tasks));
+function saveAllUsers(users) {
+  localStorage.setItem('users', JSON.stringify(users));
+}
+
+function getUserTasks() {
+  const allUsers = getAllUsers();
+  return allUsers[currentUser] || [];
+}
+
+function saveUserTasks(tasks) {
+  const allUsers = getAllUsers();
+  allUsers[currentUser] = tasks;
+  saveAllUsers(allUsers);
+}
 
 function renderWelcome() {
-  const username = localStorage.getItem('username');
-  if (!username) {
+  if (!currentUser) {
     window.location.href = 'index.html';
   } else {
-    welcomeMessage.textContent = `Welcome back, ${username}`;
+    welcomeMessage.textContent = `Welcome back, ${currentUser}`;
   }
 }
 
 function renderTasks(filter = 'all') {
-  const tasks = getTasks();
+  const tasks = getUserTasks();
   taskList.innerHTML = '';
 
   const filteredTasks = tasks.filter(task =>
@@ -53,7 +69,7 @@ function renderTasks(filter = 'all') {
 }
 
 function updateStats() {
-  const tasks = getTasks();
+  const tasks = getUserTasks();
   document.getElementById('totalCount').textContent = tasks.length;
   document.getElementById('completedCount').textContent = tasks.filter(t => t.status === 'done').length;
   document.getElementById('pendingCount').textContent = tasks.filter(t => t.status === 'pending').length;
@@ -66,23 +82,24 @@ function updateStats() {
 function addTask() {
   const text = taskInput.value.trim();
   if (text === '') return;
-  const tasks = getTasks();
+  const tasks = getUserTasks();
   tasks.push({
     id: Date.now(),
     text,
     status: 'pending',
     createdAt: new Date().toLocaleString()
   });
-  saveTasks(tasks);
+  saveUserTasks(tasks);
   taskInput.value = '';
   renderTasks(currentFilter);
 }
 
 function toggleTaskStatus(id) {
-  const tasks = getTasks();
+  const tasks = getUserTasks();
   const task = tasks.find(t => t.id === id);
+  if (!task) return;
   task.status = task.status === 'pending' ? 'done' : 'pending';
-  saveTasks(tasks);
+  saveUserTasks(tasks);
   renderTasks(currentFilter);
 }
 
