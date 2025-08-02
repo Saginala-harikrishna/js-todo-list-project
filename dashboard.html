@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskFlow Dashboard</title>
+  <link rel="stylesheet" href="css/dashboard_style.css" />
+</head>
+<body class="light-mode">
+  <header class="header">
+    <div class="logo">TaskFlow</div>
+    <div class="user-section">
+      <span id="welcomeMessage">Welcome back, </span>
+      <button id="themeToggle" title="Toggle Theme">🌓</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="add-task-box">
+      <input type="text" id="taskInput" placeholder="Add a new task..." />
+      <button id="addTaskBtn">+ Add Task</button>
+    </div>
+
+    <div class="stats-filters">
+      <div class="task-stats">
+        <div>Total<br><span id="totalCount">0</span></div>
+        <div>Completed<br><span id="completedCount">0</span></div>
+        <div>Pending<br><span id="pendingCount">0</span></div>
+      </div>
+
+      <div class="task-filters">
+        <button class="filter-btn active" data-filter="all">All (<span id="allCount">0</span>)</button>
+        <button class="filter-btn" data-filter="pending">Pending (<span id="pendingFilterCount">0</span>)</button>
+        <button class="filter-btn" data-filter="done">Done (<span id="doneFilterCount">0</span>)</button>
+      </div>
+    </div>
+
+    <div id="taskList" class="task-list">
+      <!-- Tasks will be rendered here -->
+    </div>
+  </main>
+
+  <script src="js/dashboard.js"></script>
+  <script src="js/theme.js"></script>
+</body>
+</html>

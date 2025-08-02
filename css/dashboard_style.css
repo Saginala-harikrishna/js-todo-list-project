@@ -1,0 +1,136 @@
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #7c3aed;
+}
+
+.user-section {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.user-section button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #a855f7;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.user-section button:hover {
+  background-color: #7c3aed;
+}
+
+/* Add Task */
+.add-task-box {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.add-task-box input {
+  width: 60%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 2px solid #a855f7;
+  font-size: 1rem;
+}
+
+.add-task-box button {
+  background-color: #a855f7;
+  color: white;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* Stats + Filter */
+.stats-filters {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+  flex-wrap: wrap;
+}
+
+.task-stats div {
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem;
+  text-align: center;
+  width: 100px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.task-stats span {
+  font-size: 1.5rem;
+  color: #7c3aed;
+  font-weight: bold;
+}
+
+.task-filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.filter-btn {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background-color: #a855f7;
+  color: white;
+}
+
+/* Task List */
+.task-list {
+  margin: 1rem 2rem;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+.task-item input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 1rem;
+}
+
+.task-text {
+  flex-grow: 1;
+  font-size: 1rem;
+}
+
+.task-time {
+  font-size: 0.8rem;
+  color: gray;
+}
