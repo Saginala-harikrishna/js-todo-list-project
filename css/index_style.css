@@ -1,0 +1,126 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9fc;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Container */
+.container {
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+/* Logo Section */
+.logo-section .app-icon {
+  font-size: 3rem;
+  background-color: #a855f7;
+  color: white;
+  padding: 1rem;
+  border-radius: 1rem;
+  display: inline-block;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+  margin-bottom: 1rem;
+}
+
+.logo-section .app-name {
+  font-size: 2rem;
+  color: #7c3aed;
+}
+
+.logo-section .app-tagline {
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+/* Login Box */
+.login-box {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  margin: 2rem 0;
+}
+
+.login-box h2 {
+  margin-bottom: 0.5rem;
+}
+
+.login-box .subtext {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.login-box label {
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #a855f7;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #7c3aed;
+}
+
+.login-box button {
+  background-color: #a855f7;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-box button:hover {
+  background-color: #7c3aed;
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.feature-box {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  min-width: 140px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+}
+
+.feature-box .small-text {
+  font-size: 0.8rem;
+  color: #555;
+}
