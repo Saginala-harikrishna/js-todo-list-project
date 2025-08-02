@@ -145,3 +145,56 @@
 .dark-mode .task-stats div {
   background-color: #1e1e1e;
 }
+
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #323232;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(20px);
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.task-text {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.task-controls button {
+  margin-left: 5px;
+  background-color: green;
+  color: white;
+  padding: 0.45rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+
+}
+
+.edit-input {
+  flex: 1;
+  padding: 5px;
+  font-size: 16px;
+}

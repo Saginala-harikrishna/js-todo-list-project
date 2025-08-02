@@ -56,12 +56,29 @@ function renderTasks(filter = 'all') {
     const text = document.createElement('div');
     text.className = 'task-text';
     text.textContent = task.text;
+    if (task.status === 'done') {
+      text.style.textDecoration = 'line-through';
+    }
 
     const time = document.createElement('div');
     time.className = 'task-time';
     time.textContent = task.createdAt;
 
-    item.append(checkbox, text, time);
+    const controls = document.createElement('div');
+    controls.className = 'task-controls';
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.classList.add('edit-btn');
+    editBtn.addEventListener('click', () => editTask(task.id));
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.addEventListener('click', () => deleteTask(task.id));
+
+    controls.append(editBtn, deleteBtn);
+    item.append(checkbox, text, time, controls);
     taskList.appendChild(item);
   });
 
@@ -103,6 +120,54 @@ function toggleTaskStatus(id) {
   renderTasks(currentFilter);
 }
 
+function editTask(id) {
+  const tasks = getUserTasks();
+  const task = tasks.find(t => t.id === id);
+  if (!task) return;
+
+  const taskDivs = document.querySelectorAll('.task-item');
+  taskDivs.forEach(div => {
+    const textDiv = div.querySelector('.task-text');
+    if (textDiv && textDiv.textContent === task.text) {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.value = task.text;
+      input.classList.add('edit-input');
+
+      const saveBtn = document.createElement('button');
+      saveBtn.textContent = 'Save';
+      saveBtn.classList.add('save-btn');
+      saveBtn.addEventListener('click', () => {
+        const newText = input.value.trim();
+        if (newText) {
+          task.text = newText;
+          saveUserTasks(tasks);
+          renderTasks(currentFilter);
+        }
+      });
+
+      const cancelBtn = document.createElement('button');
+      cancelBtn.textContent = 'Cancel';
+      cancelBtn.classList.add('cancel-btn');
+      cancelBtn.addEventListener('click', renderTasks);
+
+      const parent = textDiv.parentElement;
+      textDiv.replaceWith(input);
+      const controls = parent.querySelector('.task-controls');
+      controls.innerHTML = '';
+      controls.append(saveBtn, cancelBtn);
+    }
+  });
+}
+
+function deleteTask(id) {
+  let tasks = getUserTasks();
+  tasks = tasks.filter(t => t.id !== id);
+  saveUserTasks(tasks);
+  renderTasks(currentFilter);
+  showToast('Task deleted');
+}
+
 addTaskBtn.addEventListener('click', addTask);
 
 filterBtns.forEach(btn => {
@@ -119,6 +184,28 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
   window.location.href = 'index.html';
 });
 
-// Initial
+const clearAllBtn = document.getElementById('clearAllBtn');
+clearAllBtn.addEventListener('click', () => {
+  if (confirm('Are you sure you want to delete all your tasks?')) {
+    const allUsers = getAllUsers();
+    allUsers[currentUser] = [];
+    saveAllUsers(allUsers);
+    renderTasks();
+    updateStats();
+    showToast('All tasks cleared!');
+  }
+});
+
+// Show toast
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Initial render
 renderWelcome();
 renderTasks();
